@@ -6,10 +6,11 @@ import { useState } from "react";
 import "../styles/Reservations.css";
 
 // Points to our Flask backend. Set VITE_API_URL in your .env file to override.
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Helper: generate available time slots for the next 30 days
 // The restaurant is open Mon-Sat 5–11 PM and Sun 5–9 PM
+
 function generateTimeSlots() {
   const slots = [];
   const now = new Date();
@@ -91,7 +92,6 @@ export default function Reservations() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Run validation; if there are errors, show them and stop
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -101,28 +101,30 @@ export default function Reservations() {
     setStatus("loading");
 
     try {
+      // IMPORTANT: store the response
+      console.log("API_URL =", API_URL);
       const res = await fetch(`${API_URL}/api/reservations`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      console.log("API_URL =", API_URL);
 
-      const data = await res.json();
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
 
       if (res.ok) {
         setStatus("success");
         setResponseMsg(data.message);
         setTableNumber(data.table_number);
       } else {
-        // 409 = slot fully booked; other errors are server-side issues
         setStatus("error");
-        setResponseMsg(data.error || "An error occurred. Please try again.");
+        setResponseMsg(data.error || "Request failed.");
       }
-    } catch {
+    } catch (err) {
+      console.error(err);
       setStatus("error");
-      setResponseMsg(
-        "Unable to connect to the reservation system. Please call us at (202) 555-4567.",
-      );
+      setResponseMsg("Network error. Try again.");
     }
   };
 

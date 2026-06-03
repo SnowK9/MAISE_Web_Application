@@ -15,10 +15,10 @@ load_dotenv()
 
 # Create the Flask application instance
 app = Flask(__name__)
-
+print("LOADED MY APP.PY")
 # Allow the React frontend (running on a different port) to call this backend.
 # Without this, browsers block "cross-origin" requests for security.
-CORS(app)
+CORS(app, origins=["http://localhost:3000"])
 
 # ─────────────────────────────────────────────
 # DATABASE CONNECTION
@@ -82,6 +82,10 @@ def init_db():
 # ─────────────────────────────────────────────
 # ROUTE: POST /api/reservations
 # ─────────────────────────────────────────────
+
+@app.route("/api/test")
+def test():
+    return jsonify({"status": "ok"})
 
 @app.route("/api/reservations", methods=["POST"])
 def create_reservation():
@@ -262,4 +266,4 @@ if __name__ == "__main__":
     # Initialize database tables before accepting requests
     init_db()
     # debug=True reloads the server automatically when you save this file
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
