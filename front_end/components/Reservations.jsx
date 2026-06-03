@@ -3,7 +3,7 @@
 // then submits to the Flask backend. Shows success or error feedback.
 
 import { useState } from "react";
-// import "./Reservations.css";
+import "../styles/Reservations.css";
 
 // Points to our Flask backend. Set VITE_API_URL in your .env file to override.
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";

@@ -3,7 +3,7 @@
 // Each category is its own section with a list of items, descriptions, and prices.
 // All menu data comes directly from the SRS requirements document.
 
-// import "./Menu.css";
+import "../styles/Menu.css";
 
 // The complete menu as a data structure.
 // Keeping data separate from layout makes it easy to update later.

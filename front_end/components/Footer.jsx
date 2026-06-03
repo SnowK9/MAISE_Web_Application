@@ -3,7 +3,7 @@
 // Rendered at the bottom of every page via App.jsx.
 
 import { Link } from "react-router-dom";
-// import "./Footer.css";
+import "../styles/Footer.css";
 
 export default function Footer() {
   return (

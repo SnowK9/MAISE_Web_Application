@@ -1,0 +1,132 @@
+/* About.css */
+
+/* ── Story section ── */
+.about-story {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-story__quote {
+  position: sticky;
+  top: calc(var(--nav-height) + 40px);
+  padding: 40px;
+  border: 1px solid var(--border);
+  background: var(--charcoal-2);
+}
+
+.about-story__quotemark {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--gold);
+  line-height: 0.6;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.about-story__quote blockquote {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+.about-story__body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin-top: 20px;
+}
+
+/* ── Values ── */
+.about-values {
+  background: var(--charcoal-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 0;
+}
+
+.about-values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.about-values__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.about-values__desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ── Founders ── */
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+}
+
+.founder-card {
+  padding: 48px 40px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: border-color 0.3s;
+}
+.founder-card:hover { border-color: var(--border-strong); }
+
+.founder-card__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin: 0 auto 24px;
+  background: var(--charcoal-3);
+  letter-spacing: 0.05em;
+}
+
+.founder-card__name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--cream);
+}
+
+.founder-card__role {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 6px;
+}
+
+.founder-card__bio {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about-story { grid-template-columns: 1fr; gap: 40px; }
+  .about-story__quote { position: static; }
+  .about-values__grid { grid-template-columns: 1fr; gap: 32px; }
+  .founders-grid { grid-template-columns: 1fr; }
+}

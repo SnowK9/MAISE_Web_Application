@@ -3,7 +3,7 @@
 // Shows success/error messages after submission.
 
 import { useState } from "react";
-// import "./NewsletterSignup.css";
+import "../styles/NewsletterSignup.css";
 
 // API_URL points to our Flask backend (running on port 5000 locally)
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";

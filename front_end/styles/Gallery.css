@@ -1,0 +1,268 @@
+/* Gallery.css */
+
+/* ── Filter bar ── */
+.gallery-filters {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.gallery-filters__row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gallery-filter-btn {
+  padding: 10px 28px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.25s;
+}
+.gallery-filter-btn:hover {
+  border-color: var(--gold-muted);
+  color: var(--gold);
+}
+.gallery-filter-btn--active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--charcoal);
+}
+
+/* ── Photo grid ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Every 5th item spans 2 columns for visual interest */
+.gallery-tile:nth-child(5n + 2) {
+  grid-column: span 2;
+}
+
+.gallery-tile {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.3s;
+}
+.gallery-tile:hover { transform: scale(1.02); }
+
+/* Gradient overlay darkens the tile so the label is readable */
+.gallery-tile__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gallery-tile:hover .gallery-tile__overlay { opacity: 1; }
+
+.gallery-tile__label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--cream);
+}
+.gallery-tile__cat {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  /* Animate in */
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox__content {
+  position: relative;
+  max-width: 860px;
+  width: 100%;
+  background: var(--charcoal-2);
+  border: 1px solid var(--border);
+}
+
+.lightbox__image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__placeholder {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.2);
+  font-weight: 300;
+}
+
+.lightbox__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+}
+
+.lightbox__label {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--cream);
+}
+
+.lightbox__cat {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.lightbox__close:hover { color: var(--cream); }
+
+/* ── Awards ── */
+.awards-section {
+  background: var(--charcoal-2);
+  border-top: 1px solid var(--border);
+}
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.award-card {
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+.award-card:hover { border-color: var(--border-strong); }
+
+.award-card__year {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--gold);
+  font-weight: 300;
+  display: block;
+}
+
+.award-card__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--cream);
+  margin: 10px 0 6px;
+}
+
+.award-card__source {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+  margin-bottom: 12px;
+}
+
+.award-card__body {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ── Reviews ── */
+.reviews-section {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--border);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.review-card {
+  padding: 48px;
+  border: 1px solid var(--border);
+  text-align: center;
+  position: relative;
+}
+.review-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 1;
+}
+
+.review-card__quote {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.review-card__source {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-tile:nth-child(5n + 2) { grid-column: span 1; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}

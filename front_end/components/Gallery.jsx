@@ -4,7 +4,7 @@
 // Uses CSS grid for the masonry-style layout.
 
 import { useState } from "react";
-// import "./Gallery.css";
+import "../styles/Gallery.css";
 
 // Gallery items — using placeholder gradient tiles since we don't have real photos.
 // In a real project, replace "gradient" with actual image paths: src="/images/dish-1.jpg"

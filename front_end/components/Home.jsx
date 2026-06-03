@@ -9,7 +9,7 @@
 
 import { Link } from "react-router-dom";
 import NewsletterSignup from "../components/NewsletterSignup";
-// import "./Home.css";
+import "../styles/Home.css";
 
 // Three featured dishes shown on the homepage
 const FEATURED = [

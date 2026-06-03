@@ -3,7 +3,7 @@
 // and emphasizes the commitment to quality and locally sourced ingredients.
 // All content is taken directly from the SRS requirements document.
 
-// import "./About.css";
+import "../styles/About.css";
 
 const FOUNDERS = [
   {
