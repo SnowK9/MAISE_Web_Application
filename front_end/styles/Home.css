@@ -8,30 +8,25 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* Warm dark gradient simulating candlelit atmosphere */
-  background: linear-gradient(160deg, #1a1a18 0%, #211d14 50%, #1a1a18 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
-/* Subtle radial glow behind the title */
+/* Dark overlay so text stays readable over the photo */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  background: rgba(10, 8, 5, 0.62);
   pointer-events: none;
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.04) 2px,
-    rgba(0,0,0,0.04) 4px
-  );
+  background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.45) 100%);
   pointer-events: none;
 }
 

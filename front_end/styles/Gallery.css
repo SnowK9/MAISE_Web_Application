@@ -59,6 +59,17 @@
 }
 .gallery-tile:hover { transform: scale(1.02); }
 
+/* Real photo fills the tile */
+.gallery-tile__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.gallery-tile:hover .gallery-tile__img { transform: scale(1.05); }
+
 /* Gradient overlay darkens the tile so the label is readable */
 .gallery-tile__overlay {
   position: absolute;
@@ -116,6 +127,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.lightbox__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .lightbox__placeholder {
