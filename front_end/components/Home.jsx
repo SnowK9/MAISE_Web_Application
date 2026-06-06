@@ -10,6 +10,7 @@
 import { Link } from "react-router-dom";
 import NewsletterSignup from "../components/NewsletterSignup";
 import "../styles/Home.css";
+import heroBg from "../gallery/home-cafe-fausse.webp";
 
 // Three featured dishes shown on the homepage
 const FEATURED = [
@@ -43,7 +44,7 @@ export default function Home() {
   return (
     <main className="home">
       {/* ── Hero ── */}
-      <section className="hero">
+      <section className="hero" style={{ backgroundImage: `url(${heroBg})` }}>
         <div className="hero__overlay" />
         <div className="hero__content">
           <p className="section-label fade-up fade-up-1">

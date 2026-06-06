@@ -6,14 +6,17 @@
 import { useState } from "react";
 import "../styles/Gallery.css";
 
-// Gallery items — using placeholder gradient tiles since we don't have real photos.
-// In a real project, replace "gradient" with actual image paths: src="/images/dish-1.jpg"
+import imgInterior from "../gallery/gallery-cafe-interior.webp";
+import imgRibeye from "../gallery/gallery-ribeye-steak.webp";
+import imgEvent from "../gallery/gallery-special-event.webp";
+import imgCafe from "../gallery/home-cafe-fausse.webp";
+
 const GALLERY_ITEMS = [
   {
     id: 1,
     label: "The Dining Room",
     category: "Interior",
-    gradient: "linear-gradient(135deg, #2a221a 0%, #3d2e1a 100%)",
+    src: imgInterior,
   },
   {
     id: 2,
@@ -25,13 +28,13 @@ const GALLERY_ITEMS = [
     id: 3,
     label: "Private Dining",
     category: "Interior",
-    gradient: "linear-gradient(135deg, #22201a 0%, #332c1a 100%)",
+    src: imgCafe,
   },
   {
     id: 4,
     label: "Ribeye Steak",
     category: "Cuisine",
-    gradient: "linear-gradient(135deg, #2a1a1a 0%, #3d2020 100%)",
+    src: imgRibeye,
   },
   {
     id: 5,
@@ -49,7 +52,7 @@ const GALLERY_ITEMS = [
     id: 7,
     label: "Chef's Table Evening",
     category: "Events",
-    gradient: "linear-gradient(135deg, #1e1a22 0%, #2d2233 100%)",
+    src: imgEvent,
   },
   {
     id: 8,
@@ -151,11 +154,13 @@ export default function Gallery() {
               <button
                 key={item.id}
                 className="gallery-tile"
-                style={{ background: item.gradient }}
+                style={item.src ? undefined : { background: item.gradient }}
                 onClick={() => setLightboxItem(item)}
                 aria-label={`View larger image: ${item.label}`}
               >
-                {/* In a real project: <img src={item.src} alt={item.label} /> */}
+                {item.src && (
+                  <img src={item.src} alt={item.label} className="gallery-tile__img" />
+                )}
                 <div className="gallery-tile__overlay">
                   <span className="gallery-tile__label">{item.label}</span>
                   <span className="gallery-tile__cat">{item.category}</span>
@@ -181,10 +186,12 @@ export default function Gallery() {
           >
             <div
               className="lightbox__image"
-              style={{ background: lightboxItem.gradient }}
+              style={lightboxItem.src ? undefined : { background: lightboxItem.gradient }}
             >
-              {/* Real project: <img src={lightboxItem.src} alt={lightboxItem.label} /> */}
-              <p className="lightbox__placeholder">{lightboxItem.label}</p>
+              {lightboxItem.src
+                ? <img src={lightboxItem.src} alt={lightboxItem.label} className="lightbox__img" />
+                : <p className="lightbox__placeholder">{lightboxItem.label}</p>
+              }
             </div>
             <div className="lightbox__caption">
               <span className="lightbox__label">{lightboxItem.label}</span>

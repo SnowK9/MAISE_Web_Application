@@ -69,8 +69,22 @@ def init_db():
             time_slot      TIMESTAMP NOT NULL,
             table_number   INTEGER NOT NULL,
             num_guests     INTEGER NOT NULL,
-            created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            CONSTRAINT unique_time_table UNIQUE (time_slot, table_number)
         );
+    """)
+
+    # Add the unique constraint to existing tables that were created without it
+    cur.execute("""
+        DO $$
+        BEGIN
+            IF NOT EXISTS (
+                SELECT 1 FROM pg_constraint WHERE conname = 'unique_time_table'
+            ) THEN
+                ALTER TABLE reservations
+                ADD CONSTRAINT unique_time_table UNIQUE (time_slot, table_number);
+            END IF;
+        END $$;
     """)
 
     conn.commit()
@@ -253,6 +267,38 @@ def check_availability():
             "available_tables": available,
             "is_available": available > 0
         })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ─────────────────────────────────────────────
+# ROUTE: GET /api/booked-slots
+# ─────────────────────────────────────────────
+
+@app.route("/api/booked-slots", methods=["GET"])
+def get_booked_slots():
+    """
+    Returns the list of time slots where all 30 tables are fully booked.
+    The frontend uses this to disable unavailable options in the dropdown.
+    """
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT time_slot
+            FROM reservations
+            GROUP BY time_slot
+            HAVING COUNT(*) >= 30
+        """)
+
+        rows = cur.fetchall()
+        cur.close()
+        conn.close()
+
+        booked = [row["time_slot"].strftime("%Y-%m-%dT%H:%M:%S") for row in rows]
+        return jsonify({"booked_slots": booked})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

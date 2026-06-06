@@ -2,7 +2,7 @@
 // The reservation form. Collects guest info, validates all fields,
 // then submits to the Flask backend. Shows success or error feedback.
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/Reservations.css";
 
 // Points to our Flask backend. Set VITE_API_URL in your .env file to override.
@@ -69,6 +69,18 @@ export default function Reservations() {
   const [responseMsg, setResponseMsg] = useState("");
   const [tableNumber, setTableNumber] = useState(null);
 
+  // Set of fully-booked time slot strings fetched from the backend
+  const [bookedSlots, setBookedSlots] = useState(new Set());
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/booked-slots`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.booked_slots) setBookedSlots(new Set(data.booked_slots));
+      })
+      .catch(() => {}); // Silently fail — form still works without this
+  }, []);
+
   // Generic change handler: updates whichever field changed
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -117,6 +129,11 @@ export default function Reservations() {
         setStatus("success");
         setResponseMsg(data.message);
         setTableNumber(data.table_number);
+        // Refresh booked slots so the dropdown reflects the just-made booking
+        fetch(`${API_URL}/api/booked-slots`)
+          .then((r) => r.json())
+          .then((d) => { if (d.booked_slots) setBookedSlots(new Set(d.booked_slots)); })
+          .catch(() => {});
       } else {
         setStatus("error");
         setResponseMsg(data.error || "Request failed.");
@@ -266,11 +283,14 @@ export default function Reservations() {
                   onChange={handleChange}
                 >
                   <option value="">Select a time slot…</option>
-                  {TIME_SLOTS.map((slot) => (
-                    <option key={slot.value} value={slot.value}>
-                      {slot.label}
-                    </option>
-                  ))}
+                  {TIME_SLOTS.map((slot) => {
+                    const full = bookedSlots.has(slot.value);
+                    return (
+                      <option key={slot.value} value={slot.value} disabled={full}>
+                        {full ? `${slot.label} — Fully Booked` : slot.label}
+                      </option>
+                    );
+                  })}
                 </select>
                 {errors.time_slot && (
                   <p className="field__error">{errors.time_slot}</p>
