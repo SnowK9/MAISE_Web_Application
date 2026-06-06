@@ -16,7 +16,7 @@
 
 /* Dark overlay so text stays readable over the photo */
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: rgba(10, 8, 5, 0.62);
@@ -26,13 +26,18 @@
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.45) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.65)
+  );
+
   pointer-events: none;
 }
 
 .hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 0 24px;
 }
 
@@ -44,15 +49,21 @@
   letter-spacing: 0.06em;
   line-height: 1;
   margin: 16px 0 20px;
+  text-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .hero__subtitle {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 2.5vw, 1.35rem);
+
   font-style: italic;
-  color: var(--text-muted);
+
   letter-spacing: 0.05em;
   margin-bottom: 48px;
+
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero__cta {
@@ -64,12 +75,14 @@
 }
 
 .hero__menu-link {
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 0.15em;
   color: var(--text-muted);
   transition: color 0.2s;
 }
-.hero__menu-link:hover { color: var(--gold); }
+.hero__menu-link:hover {
+  color: var(--gold);
+}
 
 /* Corner ornaments */
 .hero__corner {
@@ -80,8 +93,16 @@
   border-style: solid;
   opacity: 0.4;
 }
-.hero__corner--tl { top: 40px; left: 40px; border-width: 1px 0 0 1px; }
-.hero__corner--br { bottom: 40px; right: 40px; border-width: 0 1px 1px 0; }
+.hero__corner--tl {
+  top: 40px;
+  left: 40px;
+  border-width: 1px 0 0 1px;
+}
+.hero__corner--br {
+  bottom: 40px;
+  right: 40px;
+  border-width: 0 1px 1px 0;
+}
 
 /* ── Info Bar ── */
 .info-bar {
@@ -102,11 +123,11 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 16px;
+  color: var(--cream);
 }
 .info-bar__label {
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gold);
@@ -126,7 +147,7 @@
 }
 .story__body {
   color: var(--text-muted);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.9;
   margin-top: 20px;
 }
@@ -164,8 +185,12 @@
   border-right: 1px solid var(--border);
   transition: background 0.3s;
 }
-.dish-card:last-child { border-right: none; }
-.dish-card:hover { background: var(--charcoal-2); }
+.dish-card:last-child {
+  border-right: none;
+}
+.dish-card:hover {
+  background: var(--charcoal-2);
+}
 
 .dish-card__category {
   font-size: 10px;
@@ -181,7 +206,10 @@
   color: var(--cream);
   margin-bottom: 10px;
 }
-.dish-card__desc { font-size: 13px; color: var(--text-muted); }
+.dish-card__desc {
+  font-size: 16px;
+  color: var(--text-muted);
+}
 .dish-card__price {
   font-family: var(--font-display);
   font-size: 1.4rem;
@@ -211,7 +239,9 @@
   padding: 24px 32px;
   border-right: 1px solid var(--border);
 }
-.awards-strip__item:last-child { border-right: none; }
+.awards-strip__item:last-child {
+  border-right: none;
+}
 .awards-strip__year {
   font-family: var(--font-display);
   font-size: 2rem;
@@ -219,20 +249,46 @@
   font-weight: 300;
 }
 .awards-strip__title {
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 0.1em;
   color: var(--text-muted);
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .story__inner { grid-template-columns: 1fr; gap: 40px; }
-  .story__stats { padding-left: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 32px; flex-direction: row; }
-  .featured__grid { grid-template-columns: 1fr; }
-  .dish-card { border-right: none; border-bottom: 1px solid var(--border); }
-  .awards-strip__grid { flex-direction: column; align-items: center; }
-  .awards-strip__item { border-right: none; border-bottom: 1px solid var(--border); max-width: 100%; }
-  .hero__corner { width: 32px; height: 32px; }
-  .info-bar__divider { display: none; }
+  .story__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .story__stats {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    flex-direction: row;
+  }
+  .featured__grid {
+    grid-template-columns: 1fr;
+  }
+  .dish-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .awards-strip__grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .awards-strip__item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-width: 100%;
+  }
+  .hero__corner {
+    width: 32px;
+    height: 32px;
+  }
+  .info-bar__divider {
+    display: none;
+  }
 }

@@ -36,7 +36,7 @@
 }
 
 .about-story__body {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.9;
   margin-top: 20px;
@@ -65,7 +65,7 @@
 }
 
 .about-values__desc {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.8;
 }
@@ -83,7 +83,9 @@
   text-align: center;
   transition: border-color 0.3s;
 }
-.founder-card:hover { border-color: var(--border-strong); }
+.founder-card:hover {
+  border-color: var(--border-strong);
+}
 
 .founder-card__avatar {
   width: 80px;
@@ -117,7 +119,7 @@
 }
 
 .founder-card__bio {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.9;
   font-style: italic;
@@ -125,8 +127,18 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .about-story { grid-template-columns: 1fr; gap: 40px; }
-  .about-story__quote { position: static; }
-  .about-values__grid { grid-template-columns: 1fr; gap: 32px; }
-  .founders-grid { grid-template-columns: 1fr; }
+  .about-story {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-story__quote {
+    position: static;
+  }
+  .about-values__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .founders-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -14,10 +14,14 @@
   gap: 28px;
 }
 
-.field { display: flex; flex-direction: column; gap: 8px; }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
 .field__label {
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -25,7 +29,7 @@
 }
 
 .field__optional {
-  font-size: 10px;
+  font-size: 16px;
   color: var(--text-muted);
   text-transform: none;
   letter-spacing: 0;
@@ -38,15 +42,21 @@
   background: var(--charcoal-2);
   border: 1px solid var(--border);
   color: var(--text-main);
-  font-size: 15px;
+  font-size: 16px;
   outline: none;
   transition: border-color 0.25s;
   -webkit-appearance: none;
   appearance: none;
 }
-.field__input::placeholder { color: var(--text-muted); }
-.field__input:focus { border-color: var(--gold); }
-.field__input--error { border-color: #b85555; }
+.field__input::placeholder {
+  color: var(--text-muted);
+}
+.field__input:focus {
+  border-color: var(--gold);
+}
+.field__input--error {
+  border-color: #b85555;
+}
 
 .field__select {
   cursor: pointer;
@@ -103,7 +113,7 @@
 }
 
 .res-info-card__hours {
-  font-size: 11px;
+  font-size: 16px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -125,14 +135,14 @@
 }
 
 .res-info-card__address {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
   margin-top: 8px;
   line-height: 1.7;
 }
 
 .res-info-card--note {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-muted);
   font-style: italic;
   line-height: 1.7;
@@ -192,5 +202,7 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .reservations-info { position: static; }
+  .reservations-info {
+    position: static;
+  }
 }

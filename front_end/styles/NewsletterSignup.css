@@ -24,7 +24,7 @@
 
 .newsletter__desc {
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
@@ -44,10 +44,17 @@
   outline: none;
   transition: border-color 0.25s;
 }
-.newsletter__input::placeholder { color: var(--text-muted); }
-.newsletter__input:focus { border-color: var(--gold); }
+.newsletter__input::placeholder {
+  color: var(--text-muted);
+}
+.newsletter__input:focus {
+  border-color: var(--gold);
+}
 
-.newsletter__btn { width: 100%; justify-content: center; }
+.newsletter__btn {
+  width: 100%;
+  justify-content: center;
+}
 
 .newsletter__error {
   color: #e07070;
@@ -69,5 +76,8 @@
 }
 
 @media (max-width: 768px) {
-  .newsletter__inner { grid-template-columns: 1fr; gap: 36px; }
+  .newsletter__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
 }

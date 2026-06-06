@@ -1,7 +1,7 @@
 /* Footer.css */
 
 .footer {
-  background: var(--charcoal-2);
+  background: var(--charcoal);
   border-top: 1px solid var(--border);
   padding: 72px 0 0;
   font-size: 14px;
@@ -64,8 +64,13 @@
   color: var(--text-muted);
   transition: color 0.2s;
 }
-.footer__nav-link:hover { color: var(--gold); }
-
+.footer__nav-link:hover {
+  color: var(--gold);
+}
+.footer p,
+.footer__nav-link {
+  color: var(--cream);
+}
 @media (max-width: 768px) {
   .footer__grid {
     grid-template-columns: 1fr;

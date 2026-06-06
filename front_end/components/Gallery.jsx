@@ -10,7 +10,9 @@ import imgInterior from "../gallery/gallery-cafe-interior.webp";
 import imgRibeye from "../gallery/gallery-ribeye-steak.webp";
 import imgEvent from "../gallery/gallery-special-event.webp";
 import imgCafe from "../gallery/home-cafe-fausse.webp";
-
+import imgSalmon from "../gallery/grilled_Salmon.jpg";
+import imgBar from "../gallery/exterior_bar.jpg";
+import imgTiramisu from "../gallery/Tiramisu.jpg";
 const GALLERY_ITEMS = [
   {
     id: 1,
@@ -22,7 +24,7 @@ const GALLERY_ITEMS = [
     id: 2,
     label: "Grilled Salmon",
     category: "Cuisine",
-    gradient: "linear-gradient(135deg, #1a2a2a 0%, #1a3030 100%)",
+    src: imgSalmon,
   },
   {
     id: 3,
@@ -39,14 +41,14 @@ const GALLERY_ITEMS = [
   {
     id: 5,
     label: "The Bar",
-    category: "Interior",
-    gradient: "linear-gradient(135deg, #1a1a22 0%, #1a1a33 100%)",
+    category: "Exterior",
+    src: imgBar,
   },
   {
     id: 6,
     label: "Tiramisu",
     category: "Cuisine",
-    gradient: "linear-gradient(135deg, #261e12 0%, #3d3020 100%)",
+    src: imgTiramisu,
   },
   {
     id: 7,
@@ -54,18 +56,18 @@ const GALLERY_ITEMS = [
     category: "Events",
     src: imgEvent,
   },
-  {
-    id: 8,
-    label: "Behind the Scenes",
-    category: "Events",
-    gradient: "linear-gradient(135deg, #1a2214 0%, #223018 100%)",
-  },
-  {
-    id: 9,
-    label: "Vegetable Risotto",
-    category: "Cuisine",
-    gradient: "linear-gradient(135deg, #1a2218 0%, #1e3020 100%)",
-  },
+  // {
+  //   id: 8,
+  //   label: "Behind the Scenes",
+  //   category: "Events",
+  //   gradient: "linear-gradient(135deg, #1a2214 0%, #223018 100%)",
+  // },
+  // {
+  //   id: 9,
+  //   label: "Vegetable Risotto",
+  //   category: "Cuisine",
+  //   gradient: "linear-gradient(135deg, #1a2218 0%, #1e3020 100%)",
+  // },
 ];
 
 const AWARDS = [
@@ -159,7 +161,11 @@ export default function Gallery() {
                 aria-label={`View larger image: ${item.label}`}
               >
                 {item.src && (
-                  <img src={item.src} alt={item.label} className="gallery-tile__img" />
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    className="gallery-tile__img"
+                  />
                 )}
                 <div className="gallery-tile__overlay">
                   <span className="gallery-tile__label">{item.label}</span>
@@ -186,12 +192,21 @@ export default function Gallery() {
           >
             <div
               className="lightbox__image"
-              style={lightboxItem.src ? undefined : { background: lightboxItem.gradient }}
-            >
-              {lightboxItem.src
-                ? <img src={lightboxItem.src} alt={lightboxItem.label} className="lightbox__img" />
-                : <p className="lightbox__placeholder">{lightboxItem.label}</p>
+              style={
+                lightboxItem.src
+                  ? undefined
+                  : { background: lightboxItem.gradient }
               }
+            >
+              {lightboxItem.src ? (
+                <img
+                  src={lightboxItem.src}
+                  alt={lightboxItem.label}
+                  className="lightbox__img"
+                />
+              ) : (
+                <p className="lightbox__placeholder">{lightboxItem.label}</p>
+              )}
             </div>
             <div className="lightbox__caption">
               <span className="lightbox__label">{lightboxItem.label}</span>
